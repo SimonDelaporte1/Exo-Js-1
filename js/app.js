@@ -80,12 +80,11 @@ const app = {
     },
     // création du formulaire
     createForm: function() {
-
       const formContainer = document.createElement('div');
       formContainer.className = 'row';
-      
+
       const formElement = document.createElement('form');
-  
+
       const selectColorElement = document.createElement('select');
       const selectColorContainer = document.createElement('div');
       selectColorContainer.className = 'col';
@@ -114,7 +113,6 @@ const app = {
       app.createOption('small', 'Petit', selectSizeElement, app.state.currentSize);
       app.createOption('medium', 'Moyen', selectSizeElement, app.state.currentSize);
       app.createOption('large', 'Grand', selectSizeElement, app.state.currentSize);
-
 
       selectSizeContainer.appendChild(selectSizeElement);
   
@@ -189,15 +187,15 @@ const app = {
       const selectedResults = app.data.filter((item) => item.stock >= app.state.currentStock
         && item.color === app.state.currentColor && item.size === app.state.currentSize );
   
-
       const counter = document.createElement('p');
       counter.id = 'counter';
+      counter.className = 'p-2 mt-2 bg-dark text-white';
       counter.textContent = `${selectedResults.length} produit(s) trouvé(s)`;
       app.container.appendChild(counter);
     },
     createResults: function() {
       const results = document.createElement('div');
-      results.className = 'row';
+      // results.className = 'row';
       results.id = 'results';
       // on récupère les produits à afficher en fonction du state
       const selectedResults = app.data.filter((item) => item.stock >= app.state.currentStock
@@ -205,27 +203,31 @@ const app = {
       // on affiche les produits
       selectedResults.forEach((item) => {
         const mainResult = document.createElement('div');
-        mainResult.textContent = item.name;
-        mainResult.className = 'container col-md-12 p-3 mb-2 bg-primary text-white'; 
+        mainResult.className = 'row p-3 m-2 bg-primary text-white'; 
 
         const img = document.createElement('img');
-        img.className = 'img-thumbnail productPicture';
+        img.className = 'col-md-2 img-thumbnail productPicture';
         img.src = item.picture;
         mainResult.appendChild(img);
   
-        const color = document.createElement('span');
-        color.textContent = item.color;
-        color.className = 'col-md-12';
-        mainResult.appendChild(color);
+        const name = document.createElement('div');
+        name.textContent = item.name;
+        name.className = 'col-md-2';
+        mainResult.appendChild(name);
 
-        const size = document.createElement('span');
-        size.textContent = item.size;
-        size.className = 'col-md-12';
-        mainResult.appendChild(size);
-    
-        const stock = document.createElement('span');
-        size.textContent = item.stock;
-        size.className = 'col-md-12';
+        const description = document.createElement('div');
+        description.textContent = item.description;
+        description.className = 'col-md-3';
+        mainResult.appendChild(description);
+
+        const colorAndSize = document.createElement('div');
+        colorAndSize.textContent = `${item.color} / ${item.size}`;
+        colorAndSize.className = 'col-md-3';
+        mainResult.appendChild(colorAndSize);
+
+        const stock = document.createElement('div');
+        stock.textContent = `${item.stock} en stock`;
+        stock.className = 'col-md-2';
         mainResult.appendChild(stock);
 
         results.appendChild(mainResult);
