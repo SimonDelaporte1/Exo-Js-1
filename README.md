@@ -6,9 +6,9 @@ Dans cet exercice je veux créer une page qui soit responsive, et dont le conten
 Pour la partie responsive je vais utiliser Bootstrap 5
 
 Je vais créer un tableau de données en dur dans le code, qui listera des produits (vêtements).
-Cette liste de produit sera affichée et mise à jour en fonction du filtre choisi par l'utilisateur
+Cette liste de produits sera affichée et mise à jour en fonction des filtres choisis par l'utilisateur
 
-Les produits seront constitué de plusieurs critères :
+Les produits seront constitués de plusieurs critères :
 <ol>
   <li>Un titre</li>
   <li>Une image</li>
