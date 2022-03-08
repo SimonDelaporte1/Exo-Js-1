@@ -80,10 +80,17 @@ const app = {
     },
     // création du formulaire
     createForm: function() {
+
+      const formContainer = document.createElement('div');
+      formContainer.className = 'row';
+      
       const formElement = document.createElement('form');
   
       const selectColorElement = document.createElement('select');
-      selectColorElement.className = 'search-choices';
+      const selectColorContainer = document.createElement('div');
+      selectColorContainer.className = 'col';
+
+      selectColorElement.className = 'form-select';
       // autre syntaxe
       // selectElement.setAttribute('class', 'search-choices);
       selectColorElement.addEventListener('change', app.handleColorChange);
@@ -93,9 +100,12 @@ const app = {
       app.createOption('blue', 'Bleu', selectColorElement, app.state.currentColor);
       app.createOption('beige', 'Beige', selectColorElement, app.state.currentColor);
   
+      selectColorContainer.appendChild(selectColorElement);
 
       const selectSizeElement = document.createElement('select');
-      selectSizeElement.className = 'search-choices';
+      const selectSizeContainer = document.createElement('div');
+      selectSizeContainer.className = 'col';
+      selectSizeElement.className = 'form-select';
   
       // autre syntaxe
       // selectElement.setAttribute('class', 'search-choices);
@@ -104,22 +114,31 @@ const app = {
       app.createOption('small', 'Petit', selectSizeElement, app.state.currentSize);
       app.createOption('medium', 'Moyen', selectSizeElement, app.state.currentSize);
       app.createOption('large', 'Grand', selectSizeElement, app.state.currentSize);
-  
 
+
+      selectSizeContainer.appendChild(selectSizeElement);
+  
       const inputStockElement = document.createElement('input');
+      const selectStockContainer = document.createElement('div');
+
       inputStockElement.setAttribute("type", "text"); 
-      inputStockElement.className = 'search-choices';
+      selectStockContainer.className = 'col';
+      inputStockElement.className = 'form-control';
+
+      selectStockContainer.appendChild(inputStockElement);
   
       // autre syntaxe
       // selectElement.setAttribute('class', 'search-choices);
       inputStockElement.addEventListener('input', app.handleStockChange);
       inputStockElement.setAttribute('value', app.state.currentStock);
   
-      formElement.appendChild(selectColorElement);
-      formElement.appendChild(selectSizeElement);
-      formElement.appendChild(inputStockElement);
+      formContainer.appendChild(selectColorContainer);
+      formContainer.appendChild(selectSizeContainer);
+      formContainer.appendChild(selectStockContainer);
+
+      formElement.appendChild(formContainer);
   
-      app.container.appendChild(formElement);
+      app.container.appendChild(formContainer);
     },
     // créer une option dans un select :
     // - text : le texte à placer dans l'option
@@ -178,6 +197,7 @@ const app = {
     },
     createResults: function() {
       const results = document.createElement('div');
+      results.className = 'row';
       results.id = 'results';
       // on récupère les produits à afficher en fonction du state
       const selectedResults = app.data.filter((item) => item.stock >= app.state.currentStock
@@ -186,25 +206,26 @@ const app = {
       selectedResults.forEach((item) => {
         const mainResult = document.createElement('div');
         mainResult.textContent = item.name;
-        mainResult.className = 'col-md-12';
+        mainResult.className = 'container col-md-12 p-3 mb-2 bg-primary text-white'; 
 
         const img = document.createElement('img');
+        img.className = 'img-thumbnail productPicture';
         img.src = item.picture;
         mainResult.appendChild(img);
   
         const color = document.createElement('span');
         color.textContent = item.color;
-        color.className = 'list-tag';
+        color.className = 'col-md-12';
         mainResult.appendChild(color);
 
         const size = document.createElement('span');
         size.textContent = item.size;
-        size.className = 'list-tag';
+        size.className = 'col-md-12';
         mainResult.appendChild(size);
     
         const stock = document.createElement('span');
         size.textContent = item.stock;
-        size.className = 'list-tag';
+        size.className = 'col-md-12';
         mainResult.appendChild(stock);
 
         results.appendChild(mainResult);

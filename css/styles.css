@@ -1,0 +1,19 @@
+.productPicture {
+    width:100px;
+}
+.logo {
+    width: 250px;
+}
+header .header {
+    width: 100%;
+    background-color: azure;
+}
+
+header .header span{
+    font-family: calibri;
+    font-weight: bold;
+}
+.siteTitle {
+    font-size: 40px;
+    text-align: center;
+}
