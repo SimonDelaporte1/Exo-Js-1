@@ -15,7 +15,7 @@ const app = {
           picture: 'https://vstreet.eu/375-large_default/pantalon-moto-vstreet-chino-beige.jpg',
           description: 'Un pantalon est un vêtement porté sur la partie inférieure du corps, les deux jambes étant couvertes séparément.',
           stock: 5,
-          color: 'beige',
+          color: 'black',
           size: 'medium'
         },
         {
@@ -23,7 +23,7 @@ const app = {
           picture: 'https://media.ccvmode.com/125711-large_new_default/premium-by-jack-jones-veste-homme-bleu.jpg',
           description: 'Une veste est un vêtement à manches longues couvrant la partie supérieure du corps qui s\'ouvre sur le devant et ne descend pas plus bas que les hanches',
           stock: 3,
-          color: 'blue',
+          color: 'black',
           size: 'medium'
         },
         {
@@ -38,7 +38,7 @@ const app = {
           name: 'Chaussette',
           picture: 'https://www.labonal.fr/18341-large_default/chaussettes-tennis-coton-blanc.jpg',
           description: 'Une chaussette est un bas qui s\'arrête à mi-jambe ou à la cheville et se porte à l\'intérieur d\'une chaussure ou d\'un chausson',
-          stock: 0,
+          stock: 3,
           color: 'white',
           size: 'large'
         },
@@ -96,8 +96,6 @@ const app = {
   
       app.createOption('black', 'Noir', selectColorElement, app.state.currentColor);
       app.createOption('white', 'Blanc', selectColorElement, app.state.currentColor);
-      app.createOption('blue', 'Bleu', selectColorElement, app.state.currentColor);
-      app.createOption('beige', 'Beige', selectColorElement, app.state.currentColor);
   
       selectColorContainer.appendChild(selectColorElement);
 
