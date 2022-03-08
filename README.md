@@ -45,7 +45,7 @@ Les produits seront constitués de plusieurs critères :
         {
           name: 'Tee-shirt',
           picture: 'https://img01.ztat.net/article/spp-media-p1/b37c72e1184c3acb8cab529d8b7a644c/2490d6d4805443b4b4481dee0e96ac0c.jpg?imwidth=762',
-          description: 'Un tee-shirt est un maillot de corps qui doit son nom à sa forme en « T », sans col et initialement à manches courtes3 mais éventuellement à manches longues',
+          description: 'Un tee-shirt est un maillot de corps qui doit son nom à sa forme en « T », sans col et initialement à manches courtes mais éventuellement à manches longues',
           stock: 5,
           color: 'black',
           size: 'medium'

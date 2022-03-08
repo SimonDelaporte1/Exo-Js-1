@@ -29,7 +29,7 @@ const app = {
         {
           name: 'Tee-shirt',
           picture: 'https://img01.ztat.net/article/spp-media-p1/b37c72e1184c3acb8cab529d8b7a644c/2490d6d4805443b4b4481dee0e96ac0c.jpg?imwidth=762',
-          description: 'Un tee-shirt est un maillot de corps qui doit son nom à sa forme en « T », sans col et initialement à manches courtes3 mais éventuellement à manches longues',
+          description: 'Un tee-shirt est un maillot de corps qui doit son nom à sa forme en « T », sans col et initialement à manches courtes mais éventuellement à manches longues',
           stock: 5,
           color: 'black',
           size: 'medium'
@@ -67,14 +67,37 @@ const app = {
           size: 'large'
         },
       ],
+    translate: [
+        {
+            technicalCode: 'black',
+            translation: 'Noir',
+        },
+        {
+            technicalCode: 'white',
+            translation: 'Blanc',
+        },
+        {
+            technicalCode: 'small',
+            translation: 'Petit',
+        },
+        {
+            technicalCode: 'medium',
+            translation: 'Moyen',
+        },
+        {
+            technicalCode: 'large',
+            translation: 'Grand',
+        },
+    ],
     init: function() {
       app.container = document.getElementById('app');
+      // formulaire. L'affichage n'est pas rafraichi avec le reste
       app.createForm();
       app.createProductsList();
     },
     // création de l'interface
     createProductsList: function() {
-      // 3 blocs : formulaire, compteur, résultats
+      // 2 blocs : compteur, résultats
       app.createCounter();
       app.createResults();
     },
@@ -127,6 +150,7 @@ const app = {
       // selectElement.setAttribute('class', 'search-choices);
       inputStockElement.addEventListener('input', app.handleStockChange);
       inputStockElement.setAttribute('value', app.state.currentStock);
+      inputStockElement.setAttribute('placeholder', 'Quantité');
   
       formContainer.appendChild(selectColorContainer);
       formContainer.appendChild(selectSizeContainer);
@@ -160,7 +184,6 @@ const app = {
       app.state.currentColor = event.target.value;
   
       // on adapte l'affichage : on efface tout, et on re-crée les différents blocs
-      
       document.getElementById('results').outerHTML = '';
       document.getElementById('counter').outerHTML = '';
       app.createProductsList();
@@ -191,6 +214,13 @@ const app = {
       counter.textContent = `${selectedResults.length} produit(s) trouvé(s)`;
       app.container.appendChild(counter);
     },
+    // Fonction pour chercher le nom Français d'une couleur ou d'une taille à partir d'un code technique
+    getNameToDisplay: function(value) {
+        // filtre du tableau pour retourner uniquement la traduction qui nous intéresse
+        const results = app.translate.filter((item) => item.technicalCode === value);
+        // Une seule solution possible
+        return results[0].translation;
+    },
     createResults: function() {
       const results = document.createElement('div');
       // results.className = 'row';
@@ -219,7 +249,7 @@ const app = {
         mainResult.appendChild(description);
 
         const colorAndSize = document.createElement('div');
-        colorAndSize.textContent = `${item.color} / ${item.size}`;
+        colorAndSize.textContent = `${app.getNameToDisplay(item.color)} / ${app.getNameToDisplay(item.size)}`;
         colorAndSize.className = 'col-md-3';
         mainResult.appendChild(colorAndSize);
 
